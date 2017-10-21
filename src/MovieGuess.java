@@ -24,12 +24,14 @@ public class MovieGuess {
                 System.out.println("Found letter at position : " + letterPosition + "!");
                 answer[letterPosition] = userGuess;
                 System.out.println(answer);
+                System.out.println("You have guessed " + Game.getguessedLetters());
 
             } else {
                 System.out.println("No such letter in title!");
                 System.out.println(answer);
                 gamePoints -= 1;
                 System.out.println(gamePoints + " guesses left!");
+                System.out.println("You have guessed " + Game.getguessedLetters());
             }
         } else {
                 System.out.println("YOU LOSE!!!");
