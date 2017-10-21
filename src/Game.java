@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Game
 {
-    public static String[] makeArray(File file) throws Exception
+    static String[] makeArray(File file) throws Exception
     {
         Scanner fileScanner = new Scanner(file);
         String[] input = new String[50];
@@ -13,33 +13,29 @@ public class Game
         return input;
     }
 
-    public static String makeBlank(String movie){
+    static String makeBlank(String movie){
         String blankMovie = "";
-        for (int i = 0; i <= movie.length(); i++){
+        for (int i = 0; i <= movie.length(); i++) {
             blankMovie += '_';
         }
         return blankMovie;
     }
 
-    public static boolean letterInTitle(String movie, char userChar){
+    static boolean letterInTitle(String movie, char userChar){
         int charPosition = movie.indexOf(userChar);
         boolean inTitle;
-        if (charPosition != -1) {
-            inTitle = true;
-        } else {
-            inTitle = false;
-        }
+        inTitle = charPosition != -1;
         return inTitle;
     }
 
-    public static /*String*/char getUserInput(){
+    static char getUserInput(){
         System.out.println("Your gues?....");
         Scanner userInputScanner = new Scanner(System.in);
         char input = userInputScanner.next().charAt(0);
         return input;
     }
 
-    public static int getPosition(String movie, char userChar){
+    static int getPosition(String movie, char userChar){
         int charPosition = movie.indexOf(userChar);
         return charPosition;
     }
