@@ -25,10 +25,12 @@ public class Game
 
     static boolean letterInTitle(String movie, char userChar){
         int charPosition = movie.indexOf(userChar);
-        boolean inTitle;
-        inTitle = charPosition != -1;
-        return inTitle;
-    }
+        if (charPosition != -1) {
+             return true;
+        } else
+            return false;
+        }
+
 
     static char getUserInput() {
             System.out.println("Your gues?....");
@@ -39,12 +41,25 @@ public class Game
             return input;
         }
 
-    static int getPosition(String movie, char userChar){
-        int charPosition = movie.indexOf(userChar);
+    static int[] getPositions(String movie, char userChar){
+        int[] charPosition = new int[movie.length()];
+
+        for (int i = 0; i < movie.length();i++){
+
+            if (movie.indexOf(userChar, i) != -1) {
+
+                charPosition[i] = movie.indexOf(userChar, i);
+
+            } else {
+                charPosition[i] = -1;
+
+                break;
+            }
+        }
         return charPosition;
     }
 
-    static String getguessedLetters() {
+    static String getGuessedLetters() {
         String guessesStr = new String(guesses);
         return guessesStr;
     }
