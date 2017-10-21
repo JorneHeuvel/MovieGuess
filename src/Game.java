@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class Game
 {
-    public static String[] makeArray(File file) throws Exception
+    private static char[] guesses = new char[26];
+    private static int numberOfTries = 0;
+        static String[] makeArray(File file) throws Exception
     {
         Scanner fileScanner = new Scanner(file);
         String[] input = new String[50];
@@ -13,34 +15,47 @@ public class Game
         return input;
     }
 
-    public static String makeBlank(String movie){
+    static String makeBlank(String movie){
         String blankMovie = "";
-        for (int i = 0; i <= movie.length(); i++){
+        for (int i = 0; i <= movie.length()-1; i++) {
             blankMovie += '_';
         }
         return blankMovie;
     }
 
-    public static boolean letterInTitle(String movie, char userChar){
+    static boolean letterInTitle(String movie, char userChar){
         int charPosition = movie.indexOf(userChar);
-        boolean inTitle;
         if (charPosition != -1) {
-            inTitle = true;
-        } else {
-            inTitle = false;
+             return true;
+        } else
+            return false;
         }
-        return inTitle;
-    }
 
-    public static /*String*/char getUserInput(){
-        System.out.println("Your gues?....");
-        Scanner userInputScanner = new Scanner(System.in);
-        char input = userInputScanner.next().charAt(0);
-        return input;
-    }
 
-    public static int getPosition(String movie, char userChar){
-        int charPosition = movie.indexOf(userChar);
+    static char getUserInput() {
+            System.out.println("Your gues?....");
+            Scanner userInputScanner = new Scanner(System.in);
+            char input = userInputScanner.next().charAt(0);
+            guesses[numberOfTries] = input;
+            numberOfTries += 1;
+            return input;
+        }
+
+    static int[] getPositions(String movie, char userChar){
+        int[] charPosition = new int[movie.length()];
+        for (int i = 0; i < movie.length();i++){
+            if (movie.indexOf(userChar, i) != -1) {
+                charPosition[i] = movie.indexOf(userChar, i);
+            } else {
+                charPosition[i] = -1;
+                break;
+            }
+        }
         return charPosition;
+    }
+
+    static String getGuessedLetters() {
+        String guessesStr = new String(guesses);
+        return guessesStr;
     }
 }
