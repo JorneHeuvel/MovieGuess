@@ -17,7 +17,7 @@ public class Game
 
     static String makeBlank(String movie){
         String blankMovie = "";
-        for (int i = 0; i <= movie.length(); i++) {
+        for (int i = 0; i <= movie.length()-1; i++) {
             blankMovie += '_';
         }
         return blankMovie;
@@ -43,16 +43,11 @@ public class Game
 
     static int[] getPositions(String movie, char userChar){
         int[] charPosition = new int[movie.length()];
-
         for (int i = 0; i < movie.length();i++){
-
             if (movie.indexOf(userChar, i) != -1) {
-
                 charPosition[i] = movie.indexOf(userChar, i);
-
             } else {
                 charPosition[i] = -1;
-
                 break;
             }
         }
