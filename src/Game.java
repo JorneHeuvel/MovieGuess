@@ -1,11 +1,17 @@
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game
 {
     private static char[] guesses = new char[26];
     private static int numberOfTries = 0;
-        static String[] makeArray(File file) throws Exception
+    private static String blankMovieStr = "";
+    private static int gamePoints = 10;
+    private static boolean equals = false;
+
+
+    static String[] makeArray(File file) throws Exception
     {
         Scanner fileScanner = new Scanner(file);
         String[] input = new String[50];
@@ -15,12 +21,24 @@ public class Game
         return input;
     }
 
+    static String selectMovie(String[] movieArray){
+        int randomNumber = (int) (Math.random() * 10 + 1);
+        return movieArray[randomNumber];
+    }
+
     static String makeBlank(String movie){
-        String blankMovie = "";
         for (int i = 0; i <= movie.length()-1; i++) {
-            blankMovie += '_';
-        }
-        return blankMovie;
+                blankMovieStr += '_';
+            }
+        return blankMovieStr;
+    }
+
+    static int getGamepoints(){
+        return gamePoints;
+    }
+
+    static void decreaseGamePoints(int value){
+        gamePoints = gamePoints - value;
     }
 
     static boolean letterInTitle(String movie, char userChar){
@@ -58,4 +76,13 @@ public class Game
         String guessesStr = new String(guesses);
         return guessesStr;
     }
+
+    static boolean arraysMatch(char[] answer, String selected){
+        char[] selectedArray = selected.toCharArray();
+        if (Arrays.equals(answer, selectedArray)) {
+            equals = true;
+        }
+        return equals;
+    }
+
 }
